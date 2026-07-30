@@ -1,0 +1,1 @@
+Task 5 (anagram): map.get(c,0) for counting; the check becomes if c not in map or map[c] == 0: return False.

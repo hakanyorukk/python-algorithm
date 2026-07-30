@@ -1,0 +1,1 @@
+Task 4 (nearby duplicate): same structure with the <= k fix; if nums[i] in map and i - map[nums[i]] <= k: return True.

@@ -1,0 +1,4 @@
+Task 1 (first non-repeating):
+ counts.getOrDefault(c,0)+1 → counts[c] = counts.get(c,0)+1.
+ Second loop for c in s: then if counts[c] == 1: return c.
+ No char type in Python — iterating a string gives you single-character strings.

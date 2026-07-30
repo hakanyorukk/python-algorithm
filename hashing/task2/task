@@ -1,0 +1,1 @@
+Task 2 (two sum): almost identical — required = target - nums[i], if required in seen: return [seen[required], i], seen[nums[i]] = i. Use for i in range(len(nums)):.

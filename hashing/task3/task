@@ -1,0 +1,1 @@
+ask 3 (contains duplicate) — one gotcha: your Java trick if(!set.add(num)) return true doesn't translate — Python's set.add() returns None, not a boolean. Do it explicitly instead: if num in seen: return True else seen.add(num).
