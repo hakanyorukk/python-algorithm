@@ -1,0 +1,7 @@
+Task 3 — Longest substring without repeating characters (variable-size window)
+Given a string, find the length of the longest substring where all characters are unique.
+
+"abcabcbb" → 3 (the substring "abc")
+"bbbbb" → 1 ("b")
+"pwwkew" → 3 ("wke")
+This is a variable-size window — it grows and shrinks, unlike the fixed k windows. That's what makes it a step up (and a common interview question).
