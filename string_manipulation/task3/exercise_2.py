@@ -8,6 +8,5 @@ def reverseSentence(s):
 
     return " ".join(words[::-1])
 
-
 if __name__ == "__main__":
     main()

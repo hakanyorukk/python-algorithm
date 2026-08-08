@@ -11,7 +11,7 @@ def average_max_subarray(nums, k):
         maxSum = windowSum
 
     j = k
-    while j < len(nums)-1:
+    while j < len(nums):
         windowSum = windowSum + nums[j] - nums[j-k]
         maxSum = max(maxSum, windowSum)
         j += 1

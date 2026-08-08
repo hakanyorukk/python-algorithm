@@ -16,7 +16,7 @@ def is_anagram(s,t):
 
         if t[j] not in count or count[t[j]] == 0:
             return False
-        count[t[j]] = count.get(t[j], 0) -1
+        count[t[j]] = count.get(t[j], 0) - 1
     return True
 
 if __name__ == "__main__":

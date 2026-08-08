@@ -7,9 +7,7 @@ def countsVowels(s):
     for i in s.lower():
         if i in "aeiou":
             count += 1
-
     return count
-
 
 if __name__ == "__main__":
     main()
