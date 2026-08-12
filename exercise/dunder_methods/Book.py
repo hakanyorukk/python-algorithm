@@ -11,7 +11,7 @@ class Book:
 
     def __repr__(self):
         return f"Book(title='{self.title}', isbn='{self.isbn}')"
-
+ 
     def __eq__(self, other):
         return isinstance(other, Book) and other.isbn == self.isbn
 
