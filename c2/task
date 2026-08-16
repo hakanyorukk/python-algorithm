@@ -1,0 +1,16 @@
+Model a deployment pipeline.
+
+A PipelineStage represents one step (e.g. "build", "test", "deploy"):
+
+Has a name and a function/callable that runs the actual work — assume the callable returns True on success, False on failure (don't worry about what the work actually does — a stage might just be given a lambda for testing).
+run() executes that callable and returns whether it succeeded.
+
+A Pipeline runs a sequence of stages:
+
+add_stage(stage) — adds a stage to the sequence.
+run() — executes stages in order. If a stage fails, the pipeline must stop immediately — later stages should not run.
+After running, a read-only status — "success" if all stages ran and passed, "failed" if it stopped early, "not run" if run() was never called.
+last_failed_stage — the name of the stage that caused a failure, or None if none failed (or it hasn't run yet).
+Keep a record of which stages actually executed (for a report).
+
+A pipeline with zero stages should be considered a valid success (nothing to fail).

@@ -1,0 +1,17 @@
+Model a deployment system.
+
+A Server has a name and a status — either "online" or "offline". Servers start online.
+
+deploy(app_name) — deploys an app to the server. It must fail if the server is offline, and must fail if that app is already deployed there.
+remove(app_name) — removes a deployed app; fails if it isn't deployed.
+take_offline() / bring_online() — change status.
+A read-only app_count showing how many apps are deployed.
+Printing a server should show something readable.
+
+Then a ServerFleet that holds many servers:
+
+add_server(server)
+deploy_to_all(app_name) — deploys to every online server, skipping offline ones, and reports how many succeeded.
+find_server(name) — returns the server or None.
+offline_servers() — the names of all offline servers.
+total_apps() — total apps deployed across the fleet.

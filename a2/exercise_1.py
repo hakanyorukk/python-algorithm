@@ -24,7 +24,7 @@ def requests_per_ip(records):
 
 def suspicious_ips(records, threshold=3):
     fail_counts = Counter(r["ip"] for r in records if int(r["status_code"]) >= 400)
-    return {ip for ip, count in fail_counts.items() if count >= threshold}
+    return {ip:count for ip, count in fail_counts.items() if count >= threshold}
 
 def status_code_breakdown(records):
     #counts = Counter(r["status_code"] for r in records if r["status_code"])
