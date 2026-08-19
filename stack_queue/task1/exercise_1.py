@@ -16,6 +16,5 @@ def is_valid_parentheses(s):
                 return False               # return false
     return len(stack) == 0
 
-
 if __name__ == "__main__":
     main()

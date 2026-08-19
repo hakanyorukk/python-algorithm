@@ -35,7 +35,6 @@ def validate_products(products):
     return {"valid": valid, "invalid": invalid, "summary":
         {"valid_count": len(valid), "invalid_count": len(invalid), "total_value": round(total_value,2)}}
 
-
 def check_sku(sku):
     try:
         sku_let, sku_num = sku.split("-")
@@ -52,7 +51,6 @@ def check_name(name):
         raise ValidationError("Invalid name!")
     return name
 
-
 def check_price(price):
     try:
         price = float(price)
@@ -62,7 +60,6 @@ def check_price(price):
     if price <= 0:
         raise ValidationError("Invalid price")
     return round(price, 2)
-
 
 def check_qty(qty):
     try:
@@ -79,3 +76,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+

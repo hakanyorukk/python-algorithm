@@ -13,7 +13,6 @@ build_logs = [
 
 class InvalidParseError(Exception): pass
 
-
 class Build:
 
     def __init__(self, date, time, build_id, service, status, duration):
@@ -26,12 +25,16 @@ class Build:
 
     @classmethod
     def from_line(cls, line):
+        date, time, build_id, service, status, duration_str = line.split(" ",maxsplit=5)
         try:
-            date, time, build_id, service, status, duration_str = line.split(" ", maxsplit=5)
             duration = int(duration_str)
         except:
             raise InvalidParseError("Invalid parse!")
         return cls(date, time, build_id, service, status, duration)
+
+    @property
+    def is_success(self):
+        return self.status
 
     def __str__(self):
         return (f"Date: {self.date}\n"
@@ -39,11 +42,7 @@ class Build:
                 f"Build id: {self.build_id}\n"
                 f"Service: {self.service}\n"
                 f"Status: {self.status}\n"
-                f"Duration seconds: {self.duration}")
-
-    @property
-    def is_success(self):
-        return self.status == "SUCCESS"
+                f"Duration: {self.duration}")
 
 class BuildHistory:
 
@@ -56,10 +55,13 @@ class BuildHistory:
     def success_rate(self):
         if not self.logs:
             return None
-        success_count = sum(1 for log in self.logs if log.is_success)
-        return round((success_count / len(self.logs) * 100), 1)
+        success_logs = sum(1 for log in self.logs if log.is_success)
+        try:
+            return round((success_logs / len(self.logs)) * 100, 1)
+        except ZeroDivisionError as e:
+            raise InvalidParseError(f"Invalid parse {str(e)}")
 
-    def average_duration(self,service=None):
+    def average_duration(self, service=None):
         logs = self.logs
         if service is not None:
             logs = [log for log in self.logs if log.service == service]
@@ -70,17 +72,18 @@ class BuildHistory:
     def slowest_build(self):
         if not self.logs:
             return None
-        return max(self.logs, key=lambda b: b.duration)
+        #return max(log.duration for log in self.logs)
+        return max(self.logs, key=lambda log: log.duration)
 
     def builds_by_service(self):
         builds = defaultdict(list)
         for log in self.logs:
-            builds[log.service].append(log)
+            builds[log.serice] = log
         return dict(builds)
 
     def failures_by_date(self):
         failures = Counter(log.date for log in self.logs if not log.is_success)
-        return dict(failures)
+        return failures
 
 def main():
     skipped = 0
@@ -101,3 +104,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

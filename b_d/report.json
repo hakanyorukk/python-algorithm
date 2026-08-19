@@ -1,0 +1,1 @@
+{"incidents by service": {"payments": ["INC-001", "INC-003", "INC-006"], "auth": ["INC-002", "INC-005", "INC-008"], "search": ["INC-004", "INC-007"]}, "county by severity": {"critical": 3, "high": 2, "medium": 2, "low": 1}, "unresolved incidents": ["INC-003", "INC-005"], "average duration by service": {"payments": 37.5, "auth": 40.0, "search": 10.0}, "worst service": {"auth": 2}}
