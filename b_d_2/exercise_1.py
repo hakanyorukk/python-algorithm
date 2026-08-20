@@ -67,7 +67,7 @@ def generate_report(tasks):
               "completion rate by assignee": completion_rate_by_assignee(tasks)}
     # dict -> file
     with open("report2.json", "w") as report_file:
-        json.dump(report, report_file)
+        json.dump(report, report_file, indent=2)
     return report
 
 def main():
