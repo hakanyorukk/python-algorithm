@@ -1,6 +1,6 @@
 def main():
     num = int(input("Enter num> "))
-    print(fibonacci(num))
+    print(fibonaacci(num))
 
 def fibonaacci(num):
 

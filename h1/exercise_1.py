@@ -13,7 +13,7 @@ def summarize_checks(checks, results=[]):
         status = parts[1]
         time = parts[2]
 
-        if status is "OK":
+        if status == "OK":
             healthy.append(server)
         else:
             unhealthy.append(server)
