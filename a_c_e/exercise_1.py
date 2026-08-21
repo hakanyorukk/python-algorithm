@@ -115,10 +115,11 @@ def main():
     for reading_line in raw_readings:
         try:
             valid_reading = Reading.from_line(reading_line)
-            reading_set.add(valid_reading)
         except ReadingError as e:
             reading_set.add_rejection({"line": reading_line, "reason": str(e)})
     #print(f"{valid_count} valid readings, {len(rejected_readings)} rejected")
+        else:
+            reading_set.add(valid_reading)
     print(reading_set.summary())
 
 if __name__ == "__main__":

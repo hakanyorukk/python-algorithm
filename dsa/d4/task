@@ -1,0 +1,8 @@
+D4 — Kadane's, modified
+Classic returned the maximum sum. This one returns the actual subarray.
+
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]     # → [4, -1, 2, 1]
+
+Return a list. You'll need to track where the current window started, not just the running sum — that's the whole modification.
+
+Out loud: why does Kadane's work in one pass?

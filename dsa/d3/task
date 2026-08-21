@@ -1,0 +1,11 @@
+D3 — Palindrome, modified
+Classic checked a clean string. This one has junk in it.
+
+"A man, a plan, a canal: Panama"   # → True
+"race a car"                        # → False
+
+Ignore case, spaces, and punctuation — only letters and digits count. Return a bool.
+
+Use two pointers, not s[::-1]. Reversing is the one-liner answer and an interviewer will ask for the O(1)-space version anyway.
+
+Out loud: what's the space complexity of the reverse approach vs two pointers?
