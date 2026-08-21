@@ -13,9 +13,9 @@ build_logs = [
 
 class InvalidBuildLineError(Exception): pass
 
-def parse(line):
-    date, time, build_id, service, status, duration_seconds = line.split(" ")
-    return {"date": date, "time":time, "build_id":build_id, "service":service, "status":status, "duration_seconds":duration_seconds}
+# def parse(line):
+#     date, time, build_id, service, status, duration_seconds = line.split(" ")
+#     return {"date": date, "time":time, "build_id":build_id, "service":service, "status":status, "duration_seconds":duration_seconds}
 
 class Build:
 

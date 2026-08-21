@@ -1,0 +1,9 @@
+D1 — Two Sum, modified
+Classic version returned one pair. This one returns all of them.
+
+nums = [2, 7, 11, 15, 3, 4, 8, 1]
+target = 11
+
+Return a list of tuples of every pair that sums to the target. Each pair only once — (3, 8) and (8, 3) are the same pair. Order within the tuple: smaller first.
+
+Out loud before coding: what makes this O(n) instead of O(n²)?

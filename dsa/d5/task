@@ -1,0 +1,8 @@
+D5 — Group anagrams
+You've done "are these two strings anagrams." This is the aggregation version.
+
+words = ["eat", "tea", "tan", "ate", "nat", "bat"]
+
+Return a dict mapping each group's key to the list of words in it, e.g. {"aet": ["eat", "tea", "ate"], ...}.
+
+Out loud: what makes a good dictionary key here, and why must it be hashable?
