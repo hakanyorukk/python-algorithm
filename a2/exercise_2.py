@@ -31,7 +31,7 @@ def suspicious_ips(records, treshold=3):
 def status_code_breakdown(records):
     counts = {}
     for request in records:
-        status = f"{request["status"][0]}xx"
+        status = f"{request['status'][0]}xx"
         counts[status] = counts.get(status, 0) + 1
     return counts
 

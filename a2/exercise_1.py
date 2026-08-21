@@ -30,7 +30,7 @@ def status_code_breakdown(records):
     #counts = Counter(r["status_code"] for r in records if r["status_code"])
     counts = {}
     for r in records:
-        status = f"{r["status_code"][0]}xx"
+        status = f"{r['status_code'][0]}xx"
         counts[status] = counts.get(status, 0) + 1
     return counts
 
