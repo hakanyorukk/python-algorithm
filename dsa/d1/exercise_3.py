@@ -6,15 +6,15 @@ def main():
 
 def two_sum(nums, target):
     seen = set()
-    #num, index
     pairs=set()
     for num in nums:
         required_num = target - num
         if required_num in seen:
-            pairs.add((min(num, required_num), max(num, required_num)))
-
+            if required_num > num:
+                pairs.add((num, required_num))
+            else:
+                pairs.add((required_num, num))
         seen.add(num)
     return sorted(pairs)
-
 if __name__ == "__main__":
     main()

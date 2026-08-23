@@ -12,6 +12,15 @@ class Employee:
         self.name = name
         Employee.count += 1
 
+    def __eq__(self, other):
+        if isinstance(other, Employee):
+            if self.name == other.name:
+                return True
+        return False
+
+    def __hash__(self):
+        return hash((self.name))
+
     @staticmethod
     def is_valid_name(name):
         return len(name) > 0  # doesn't need self or the class

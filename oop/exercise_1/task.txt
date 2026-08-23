@@ -1,0 +1,62 @@
+Part 1 — Package
+A package has a name and a version string like "2.31.0".
+
+__init__(self, name, version)
+from_string(cls, text) — a @classmethod that parses "requests==2.31.0" into a Package. Raise ValueError with a clear message if the text has no ==.
+major — a @property returning the first number of the version as an int. "2.31.0" → 2.
+__str__ → "requests==2.31.0"
+__repr__ → "Package('requests', '2.31.0')"
+__eq__ — two packages are equal when name and version both match. Must not crash when compared to a non-Package.
+__hash__ — consistent with __eq__.
+Part 2 — PackageRegistry
+Holds packages and is iterable.
+
+__init__(self) — starts empty
+add(self, package) — ignores duplicates (same name and version). This is where __eq__/__hash__ earn their keep.
+__len__(self) — so len(registry) works
+__contains__(self, package) — so package in registry works
+__iter__ and __next__, written manually — no generators, no delegating to a list. This is the point of the exercise.
+names(self) → a sorted list of unique package names (strings)
+versions_by_name(self) → a dict of name → sorted list of version strings
+Part 3 — main()
+Parse this list, skipping bad lines, and print the results:
+
+raw = [
+    "requests==2.31.0",
+    "flask==3.0.0",
+    "requests==2.28.1",
+    "not-a-package",
+    "flask==3.0.0",
+    "django==4.2.7",
+    "requests==2.31.0",
+]
+
+Checks it must pass
+Copy these into your file and run them. Every one must print True.
+
+p1 = Package.from_string("requests==2.31.0")
+p2 = Package.from_string("requests==2.31.0")
+p3 = Package.from_string("requests==2.28.1")
+
+print(p1 == p2)                      # True  — same name and version
+print(p1 == p3)                      # False — different version
+print(p1 == "requests")              # False — must NOT crash
+print(hash(p1) == hash(p2))          # True  — the contract
+print(len({p1, p2, p3}) == 2)        # True  — set dedupes p1 and p2
+print(p1.major == 2)                 # True  — an int, not "2"
+print(str(p1) == "requests==2.31.0")
+print(repr(p1) == "Package('requests', '2.31.0')")
+print(repr([p1]) == "[Package('requests', '2.31.0')]")   # containers use __repr__
+
+r = PackageRegistry()
+for line in raw:
+    try:
+        r.add(Package.from_string(line))
+    except ValueError:
+        pass
+
+print(len(r) == 4)                   # 7 lines, 2 duplicates, 1 invalid
+print(p1 in r)
+print(r.names() == ["django", "flask", "requests"])
+print(r.versions_by_name()["requests"] == ["2.28.1", "2.31.0"])
+print([str(p) for p in r])           # the for loop must work
