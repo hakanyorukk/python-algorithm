@@ -5,7 +5,7 @@ def main():
 def palindrome(s):
     clean_s = ""
     for i in range(len(s)):
-        if s[i].isalpha():
+        if s[i].isalpha() or s[i].isdigit():
            clean_s += s[i].lower()
     print(clean_s)
 
