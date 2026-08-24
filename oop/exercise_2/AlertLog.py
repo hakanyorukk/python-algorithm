@@ -1,9 +1,4 @@
-#from Alert import Alert
 from collections import defaultdict, Counter
-from logging import critical
-
-from oop.exercise_2.Alert import Alert
-
 
 class AlertLog:
 
@@ -18,9 +13,20 @@ class AlertLog:
         return len(self.alerts)
 
     def __contains__(self, alert):
-        if alert in self.alerts:
-            return True
-        return False
+        return alert in self.alerts
+
+    def __iter__(self):
+        return iter(self.alerts)
+        # self.index = 0
+        # return self
+
+    # def __next__(self):
+    #
+    #     if self.index>=len(self.alerts):
+    #         raise StopIteration
+    #     alert = self.alerts[self.index]
+    #     self.index+=1
+    #     return alert
 
     def critical_alerts(self):
         alert_list = []
@@ -31,19 +37,19 @@ class AlertLog:
         return alert_list
 
     def by_server(self):
-        alert_dict = defaultdict(list)
+        alert_dict = defaultdict(set)
         for alert in self.alerts:
-            alert_dict[alert.server].append(alert.metric_name())
+            alert_dict[alert.server].add(alert.metric_name())
         return {server: sorted(metric) for server,metric in alert_dict.items()}
 
     def sorted_by_severity(self):
          return sorted(self.alerts, key=lambda a:(-a.severity(), a.server))
 
     def worst_offender(self):
-        return Counter(alert.server for alert in self.alerts)
+        return Counter(alert.server for alert in self.alerts).most_common(1)[0]
 
     def summary(self):
-        return {"total": self.__len__(), "critical":self.critical_alerts(), "servers": self.by_server()}
+        return {"total": self.__len__(), "critical":len(self.critical_alerts()), "servers": len({a.server for a in self.alerts})}
 
 
 

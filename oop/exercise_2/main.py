@@ -36,5 +36,6 @@ def main():
     print(len([(x, y) for x in log for y in log]) == 36)  # nested loop → re-iterable
 
 
+
 if __name__ == "__main__":
     main()
