@@ -22,7 +22,8 @@ class Alert(ABC):
         return self.severity() > 0
 
     def __str__(self):
-        return f"{self.server} {self.metric_name()} {self.value} {"(CRITICAL)" if self.is_critical() else "(ok)"}"
+        status = "(CRITICAL)" if self.is_critical() else "(ok)"
+        return f"{self.server} {self.metric_name()} {self.value} {status}"
 
     def __repr__(self):
         return f"{type(self).__name__}('{self.timestamp}', '{self.server}', {self.value})"
