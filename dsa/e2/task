@@ -1,0 +1,10 @@
+ordered_intersection(a, b) → list
+
+Values appearing in both lists, in the order they appear in a, no duplicates.
+
+([3,1,4,1,5], [1,5,9,1]) -> [1, 5]
+([1,2,3], [4,5])         -> []
+([], [1])                -> []
+([2,2,2], [2])           -> [2]
+
+Variation of: contains-duplicate / hashing. Directly relevant to the theory question you half-answered — a set for O(1) lookup, a list for order. State the complexity out loud when you're done.

@@ -1,0 +1,12 @@
+E1 — longest_k_distinct(s, k) → string
+
+Longest substring containing at most k distinct characters.
+
+('eceba', 2)          -> 'ece'
+('aa', 1)             -> 'aa'
+('abcadcacacaca', 3)  -> 'cadcacacaca'
+('', 2)               -> ''
+('abc', 0)            -> ''
+('abc', 5)            -> 'abc'
+
+Variation of: longest substring without repeating characters. Same machinery — only the shrink condition changes. You'll need best_start, and while not if. Both cost you last time.

@@ -1,0 +1,14 @@
+E3 — most_versatile_user(lines) → tuple (username, count), or None if empty
+
+Each line is "user,action,timestamp". Find the user with the most distinct actions. Malformed lines (wrong field count) are skipped. Ties break alphabetically.
+
+logs = [
+    "ivan,login,09:00",   "ivan,upload,09:05",  "ivan,login,09:10",
+    "maria,login,09:02",  "maria,delete,09:06", "maria,upload,09:07",
+    "BAD",
+    "georgi,login,09:20",
+]
+most_versatile_user(logs) -> ('maria', 3)
+most_versatile_user([])   -> None
+
+Variation of: group-anagrams + your log parser. defaultdict(set) — distinct actions, so ivan's two logins count once. This one doubles as parsing practice, which is the 80% category.
