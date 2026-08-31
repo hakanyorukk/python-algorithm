@@ -28,11 +28,11 @@ class BotPlayer(Player):
         print(f"{self.name} {'holds' if choice == 'h' else 'rolls again'}")
         return choice
 
-class Game():
+class Game:
 
-    def __init__(self, players, targe=100):
+    def __init__(self, players, target=100):
         self.players = players
-        self.target = 100
+        self.target = target
         self.current = 0
 
     def play_turn(self, player):

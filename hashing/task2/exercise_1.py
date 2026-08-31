@@ -1,8 +1,7 @@
 def main():
-    nums = [3,3]
+    nums = [3, 3]
     t = 6
     print(twoSum(nums, t))
-
 
 def twoSum(nums,t):
     map = {}

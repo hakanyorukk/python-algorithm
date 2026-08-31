@@ -1,0 +1,43 @@
+Audit Log Parsing
+Same family as your log/sensor/word-pair drills — parse lines, skip bad ones, aggregate. Blank file.
+
+Each line: timestamp,user,action,status
+
+timestamp is "YYYY-MM-DD HH:MM"
+status is "ok" or "fail"
+LINES = [
+    "2026-08-01 10:15,alice,LOGIN,ok",
+    "2026-08-01 10:16,bob,LOGIN,ok",
+    "2026-08-01 10:17,alice,UPLOAD,ok",
+    "2026-08-01 10:20,bob,DELETE,fail",
+    "garbage line",
+    "2026-08-02 09:00,alice,LOGIN,fail",
+    "2026-08-02 09:01,alice,LOGIN,ok",
+    "2026-08-02 09:05,carol,UPLOAD,ok",
+    "2026-08-02 09:06,bob,UPLOAD,ok",
+    "2026-08-02 11:30,carol,DELETE,ok",
+    "2026-08-01 23:59,bob,LOGIN,ok,extra",
+]
+Functions
+parse_line(line) → dict {"ts", "user", "action", "status"}, or None if invalid.
+Invalid = not exactly 4 fields (so "garbage line" and the ,extra line are out), or status is neither "ok" nor "fail". Strip whitespace from each field.
+
+parse_all(lines) → list of dicts, malformed lines dropped.
+
+actions_per_user(records) → dict {user: total_action_count}. Total actions, not distinct.
+
+user_with_most_failures(records) → (user, count), or None if there are no failures. Ties break alphabetically.
+
+counts_by_day(records) → dict {"YYYY-MM-DD": count}. The day is the date part of the timestamp.
+
+busiest_day(records) → the "YYYY-MM-DD" with the most records. Tie breaks earliest (alphabetical works here).
+
+success_rate(records) → float, fraction that are "ok", rounded to 2 decimals. 0.0 if there are no records — don't divide by zero.
+
+Expected
+valid records        : 9
+actions_per_user     : {'alice': 4, 'bob': 3, 'carol': 2}
+user_with_most_failures : one of ('alice',1)/('bob',1) — alice wins the tie
+counts_by_day        : {'2026-08-01': 4, '2026-08-02': 5}
+busiest_day          : '2026-08-02'
+success_rate         : 0.78
