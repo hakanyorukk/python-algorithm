@@ -1,0 +1,41 @@
+Here's the harder version — new domain, and it adds the three things that push it to the top of the intern range: grouping + average, sorting with a tie-break, and validation beyond just type conversion. Read the spec carefully (there's a validation rule that's easy to miss), write it, run it against the expected output, then send it. After I review the code, I'll ask you the complexity follow-ups — same as a real interview.
+
+Task: Movie Catalog Parser
+Each line describes a movie:
+
+Requirements:
+
+Movie class: title, genre, rating (float), votes (int).
+from_line(line) classmethod. Raise InvalidMovieError if a line is malformed OR if the rating is not between 0 and 10 (inclusive). ← don't miss this validation rule.
+Catalog class holding movies, with:
+average_rating_by_genre() → dict of genre → average rating of movies in that genre (rounded to 2 decimals).
+top_rated(n) → list of the top n movies by rating, highest first; when ratings tie, order by title A→Z.
+most_voted() → the movie with the most votes.
+genres() → a sorted list of the unique genres.
+Parse the lines, skip malformed ones, count them, and print the report.
+Sample input
+Inception,SciFi,8.8,2000000
+The Room,Drama,3.7,150000
+Interstellar,SciFi,8.6,1500000
+Parasite,Thriller,8.5,800000
+BadRating,Drama,12.5,1000
+Cats,Musical,2.8,50000
+Whiplash,Drama,8.5,700000
+Broken,SciFi,notanumber,500
+Tenet,SciFi,7.4
+
+(Three should be skipped: BadRating rating out of range, Broken bad rating, Tenet missing a field.)
+
+Expected output
+Skipped 3 malformed lines
+Average rating by genre: {'SciFi': 8.7, 'Drama': 6.1, 'Thriller': 8.5, 'Musical': 2.8}
+Top rated: Inception (8.8), Interstellar (8.6), Parasite (8.5)
+Most voted: Inception (2000000)
+Genres: ['Drama', 'Musical', 'SciFi', 'Thriller']
+
+What's harder here (what I'm testing)
+Grouping + average: you need to collect ratings per genre and average them — think defaultdict(list) then average, or accumulate sum+count.
+Sorting with a tie-break: top_rated needs rating descending and title ascending on ties — one sort key with mixed directions. (This is the tuple-key thing.)
+Validation logic: the rating range check (0–10) is a rule beyond type conversion — easy to skip if you don't read carefully.
+Uniqueness + sorting: genres() = unique, then sorted.
+Take your time, run it, compare to the expected output, then send it. I'll review, then hit you with the complexity questions.

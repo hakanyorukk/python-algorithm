@@ -51,5 +51,20 @@ def logger(func):
 def get_ice_cream(flavor):
     print(f"Here is your {flavor} ice cream 🍨")
 
-get_ice_cream("chocolate")
+#get_ice_cream("chocolate")
+
+def timer(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        print(f"{func.__name__} took {time.perf_counter() - start:.4f}s")
+        return result
+    return wrapper
+
+@timer
+def slow_sum(n):
+    return sum(range(n))
+
+print(slow_sum(5))
 

@@ -1,0 +1,9 @@
+Inception,SciFi,8.8,2000000
+The Room,Drama,3.7,150000
+Interstellar,SciFi,8.6,1500000
+Parasite,Thriller,8.5,800000
+BadRating,Drama,12.5,1000
+Cats,Musical,2.8,50000
+Whiplash,Drama,8.5,700000
+Broken,SciFi,notanumber,500
+Tenet,SciFi,7.4
