@@ -1,0 +1,7 @@
+Laptop,Electronics,899.99,3
+Mouse,Electronics,19.99,10
+Desk,Furniture,149.50,5
+Chair,Furniture,89.00,8
+BrokenLine,Electronics,notanumber,2
+Monitor,Electronics,199.99
+Keyboard,Electronics,49.99,7

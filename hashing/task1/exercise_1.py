@@ -4,7 +4,6 @@ def main():
     output = first_none_repeating(user_input)
     print(output)
 
-
 def first_none_repeating(s: str):
     if s is None or s == "":
         return '_'
